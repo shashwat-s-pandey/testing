@@ -5,13 +5,17 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { CounterProvider } from './Context/CounterContext';
+import { Provider } from 'react-redux';
+import { Store } from './app/Store';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
       <CounterProvider>
-        <App/>
+        <Provider store={Store}>
+          <App />
+        </Provider>
       </CounterProvider>
     </BrowserRouter>
   </React.StrictMode>

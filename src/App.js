@@ -34,6 +34,8 @@ import Userdetails from './Userdetails';
 import Form from './Form';
 import Form2 from './Form2';
 import { CounterContext } from './Context/CounterContext';
+import { useDispatch, useSelector } from 'react-redux';
+import { decrement, increment } from './features/counter/CounterSlice';
 
 export const userContext = React.createContext()
 export const IdContext = React.createContext()
@@ -41,6 +43,9 @@ export const IdContext = React.createContext()
 function App() {
 
   const counterContext = useContext(CounterContext);
+
+  const count = useSelector((state) => state.counter);
+  const dispatch = useDispatch();
 
   return (
     <div className="App">
@@ -97,6 +102,11 @@ function App() {
 
       <h1>Count is {counterContext.count}</h1>
       <Counter />
+
+      <h1>React Redux</h1>
+      <h2>Count is {count}</h2>
+      <button onClick={() => dispatch(increment())}>Increment</button>
+      <button onClick={() => dispatch(decrement())}>Decrement</button>
     </div>
   );
 } 
